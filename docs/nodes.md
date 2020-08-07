@@ -54,28 +54,26 @@ change your inventory to:
 
 run `cluster-upgrade.yml` or `cluster.yml`. Now you are good to go on with the removal.
 
-## Adding/replacing a worker node
+## Adding/removing worker nodes
 
-This should be the easiest.
+### Adding a worker node
 
-### 1) Add new node to the inventory
+* Add the new node(s) to the inventory
 
-### 2) Run `scale.yml`
+* Run `scale.yml`
 
 You can use `--limit=NODE_NAME` to limit Kubespray to avoid disturbing other nodes in the cluster.
 
-Before using `--limit` run playbook `facts.yml` without the limit to refresh facts cache for all nodes.
+### Removing a worker node
 
-### 3) Remove an old node with remove-node.yml
+* Keep the old node in the inventory
 
-With the old node still in the inventory, run `remove-node.yml`. You need to pass `-e node=NODE_NAME` to the playbook to limit the execution to the node being removed.
+* Run `remove-node.yml`. You need to pass `-e node=NODE_NAME` to the playbook to limit the execution to the node being removed.
   
 If the node you want to remove is not online, you should add `reset_nodes=false` to your extra-vars: `-e node=NODE_NAME reset_nodes=false`.
-Use this flag even when you remove other types of nodes like a master or etcd nodes.
 
-### 5) Remove the node from the inventory
+* Remove the node from the inventory
 
-That's it.
 
 ## Adding/replacing a master node
 
